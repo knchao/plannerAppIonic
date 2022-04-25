@@ -1,0 +1,41 @@
+
+
+<ion-header [translucent]="true" *ngIf ="currentView === 'ToDoList'">
+  <ion-toolbar>
+    <ion-title>
+      To Do List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header [translucent]="true" *ngIf ="currentView === 'AddTask'">
+  <ion-toolbar>
+    <ion-title>
+      Add Task
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true"  *ngIf ="currentView === 'ToDoList'">
+
+  <ion-fab vertical ="top" horizontal="end" slot = "fixed" >
+    <ion-button expand="block" (click) = "btnAddTaskClick()">+ Add Task</ion-button>
+    
+  </ion-fab>
+
+  <div *ngFor = "let t of tasks" >
+     <app-task *ngIf = "(t.status === 'Not Done') && (t.weekly_task === true)" [task]="t"  (markToUpdateEvent) = "addCompletionDate($event)" ></app-task>
+  </div>
+
+</ion-content>
+
+
+<ion-content *ngIf ="currentView === 'AddTask'" [fullscreen]="true">
+  <app-add-task (postEvent) = "createThisTask($event)" [task] = "currentTask"></app-add-task>
+  <br><br>
+  <ion-button color = "warning" (click) = "btnBackClick()">Back</ion-button>
+</ion-content>
+
+   
+
+

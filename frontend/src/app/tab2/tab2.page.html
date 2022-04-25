@@ -1,0 +1,36 @@
+
+<ion-header [translucent]="true" *ngIf ="currentView === 'Task_Goals'">
+    <ion-toolbar>
+      <ion-title>
+        Goals
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-header [translucent]="true" *ngIf ="currentView === 'AddTask_Goal'">
+    <ion-toolbar>
+      <ion-title>
+        Add Goal
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true"  *ngIf ="currentView === 'Task_Goals'">
+
+    <ion-fab vertical ="top" horizontal="end" slot = "fixed" >
+      <ion-button expand="block" (click) = "btnAddGoalClick()">+ Add Goal</ion-button>
+    </ion-fab>
+
+    <div *ngFor = "let t of task_Goals" >
+        <app-task *ngIf = "(t.status === 'Not Done') && (t.monthly_goal === true)" [task]="t"  (markToUpdateEvent) = "addCompletionDate($event)" ></app-task>
+    </div>
+
+    
+</ion-content>
+
+<ion-content *ngIf ="currentView === 'AddTask_Goal'" [fullscreen]="true">
+    <app-add-task (postEvent) = "createThisTaskGoal($event)" [task] = "currentTaskGoal"></app-add-task>
+    <br><br>
+    <ion-button color = "warning" (click) = "btnBackClick()">Back</ion-button>
+</ion-content>
+

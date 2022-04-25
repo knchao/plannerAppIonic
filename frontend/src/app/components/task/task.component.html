@@ -1,0 +1,39 @@
+
+<ion-card class = "BG">
+  <ion-card-header>
+     <ion-card-title>{{task.name}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-label position="floating">Description: </ion-label>
+      {{task.description}}<br>
+    <ion-label position="floating">Date of Start: </ion-label>
+      {{task.date_of_start}}<br>
+    <ion-label position="floating">Date of End: </ion-label>
+      {{task.date_of_end}}<br>
+
+      <ion-item *ngIf = "(task.status === 'Not Done')">
+        <ion-label>Click if this has been done</ion-label>
+        <ion-checkbox color="primary" checked slot="start" checked="false" (click)="checkBoxChecked()" ></ion-checkbox>
+      </ion-item>
+      
+      <div *ngIf = "(task.status === 'Done')">
+          Completion Date: {{task.completion_date}}  
+      </div>
+
+      <div class = "noteClass" *ngIf = "(task.hasNote === true)">
+        
+        <ion-label position="floating">Note: </ion-label>
+        {{task.noteHeader}}<br>
+        <ion-label position="floating">Detail: </ion-label>
+        {{task.noteDetail}}<br>
+        <ion-label position="floating">Importance: </ion-label>
+        {{task.noteImportance}}
+      </div>
+
+      <ion-item *ngIf = "(task.hasNote === false) &&  (whoCalledThisComponent === 'Notes')">
+          <ion-button color = "primary" (click) = "btnAddNoteClick()">Add Note</ion-button>
+      </ion-item>
+
+  </ion-card-content>
+</ion-card>

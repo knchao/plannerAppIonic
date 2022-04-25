@@ -1,0 +1,13 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      All Achievements
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngFor = "let t of tasks">
+       <app-task *ngIf = "t.status === 'Done'" [task]="t" ></app-task>
+  </div>
+</ion-content>

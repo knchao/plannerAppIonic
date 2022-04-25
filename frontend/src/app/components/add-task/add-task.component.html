@@ -1,0 +1,71 @@
+
+ 
+  <form [formGroup] = "form">
+
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input formControlName = "name" ></ion-input>
+    </ion-item>
+
+   <ion-item color = "danger" *ngIf="name!.errors?.['required'] && name!.touched">Name is Required</ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea formControlName = "description"></ion-textarea>
+    </ion-item>
+
+
+
+    <ion-item>
+      <ion-label position="floating">Date of Start</ion-label>
+      <ion-input type = "date" formControlName = "date_of_start"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Date of End</ion-label>
+      <ion-input type = "date" formControlName = "date_of_end"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Status</ion-label>
+      <ion-select formControlName = "status">
+        <ion-select-option >Not Done</ion-select-option>
+        <ion-select-option >Done</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <div *ngIf="task.hasNote === false">
+        <ion-item>
+          <h3>Note</h3>
+          <ion-label position="floating">Header</ion-label>
+          <ion-input formControlName = "noteHeader"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Detail</ion-label>
+          <ion-textarea formControlName = "noteDetail"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Importance</ion-label>
+          <ion-select formControlName = "noteImportance">
+            <ion-select-option value="Low">Low</ion-select-option>
+            <ion-select-option value="Medium">Medium</ion-select-option>
+            <ion-select-option value="High">High</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+    <br>
+
+    <ion-button (click) = "onSubmit()" [disabled] = "form.invalid"> Submit</ion-button>
+
+  </form>
+
+
+
+
+
+
+

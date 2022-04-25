@@ -1,0 +1,33 @@
+
+<ion-header [translucent]="true" *ngIf ="currentView === 'ShowNotes'">
+  <ion-toolbar>
+    <ion-title>
+      Notes (for weekly tasks achieved)
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header [translucent]="true" *ngIf ="currentView === 'addNotes'">
+  <ion-toolbar>
+    <ion-title>
+      Add Note
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true"  *ngIf ="currentView === 'ShowNotes'">
+  <div *ngFor = "let t of tasks" >
+    <app-task *ngIf = "(t.weekly_task === true) && (t.status === 'Done')" [task]="t" (markToUpdateEvent) = "showAddNoteForm($event)" [whoCalledThisComponent] = "taskComponentCaller"></app-task>
+  </div>
+</ion-content>
+
+
+<ion-content *ngIf ="currentView === 'addNotes'" [fullscreen]="true">
+  
+     <app-add-task (postEvent) = "addNoteToTask($event)" [task] = "currentTask" ></app-add-task>
+      <br><br>
+  
+  <ion-button color = "warning" (click) = "btnBackClick()">Back</ion-button>
+</ion-content>
+
+   
